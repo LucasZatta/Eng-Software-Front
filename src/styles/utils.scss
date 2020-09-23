@@ -1,0 +1,11 @@
+.grid-center-columns {
+  display: grid;
+  grid-auto-flow: column;
+  align-items: center;
+}
+
+@mixin button-style($background, $border, $font) {
+  background-color: $background !important;
+  border-color: $border !important;
+  color: $font !important;
+}

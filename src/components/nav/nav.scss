@@ -1,0 +1,43 @@
+@use "./../../styles/_themes";
+@import "./../../styles/utils";
+
+.menu-text {
+  font-weight: 500;
+  line-height: 24px;
+  font-size: 0.875rem;
+  cursor: pointer;
+}
+
+nav {
+  @extend .grid-center-columns;
+  justify-content: space-between;
+
+  .menu {
+    @extend .grid-center-columns;
+    gap: 16px;
+    &__span {
+      @extend .menu-text;
+      color: themes.$primary-color;
+    }
+
+    .login-button {
+      @include button-style(#ffffff, themes.$blue-02, themes.$blue-02);
+      border-radius: 8px;
+      width: 116px;
+      height: 40px;
+      span {
+        @extend .menu-text;
+        font-size: 0.775rem;
+      }
+    }
+  }
+}
+
+.owner-menu {
+  display: grid;
+  gap: 8px;
+  background: themes.$blue-01;
+  justify-content: flex-start;
+  border-radius: 4px;
+  padding: 8px 4px;
+}
