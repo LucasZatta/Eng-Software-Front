@@ -2,8 +2,10 @@ export interface Property {
   id: string;
   address: Address;
   ownerID: string;
+
   description: string;
   rent_value: number;
+  //
   rooms: number;
   garage_spots: number;
   living_rooms: number;
@@ -11,8 +13,8 @@ export interface Property {
   area: number;
   cabinet: boolean;
   floor?: number;
-  cond_value: number;
-  concierge24: boolean;
+  cond_value?: number;
+  concierge24?: boolean;
 }
 
 export interface Address {
