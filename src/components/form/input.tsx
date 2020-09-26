@@ -3,23 +3,26 @@ import React, { FC } from "react";
 
 export interface InputProps {
   label: string;
+  name?: string;
   placeholder?: string;
+  type?: "text" | "number" | "email" | "tel";
+  maxLength?: number;
+  required?: boolean;
 }
 
-const Input: FC<InputProps> = ({ label, placeholder = "" }) => {
+const Input: FC<InputProps> = ({ label, placeholder = "", type = "text", maxLength = 9999, name, required = true }) => {
   return (
     <Form.Item
-      name={label}
+      name={name ? name : label}
       label={label}
       rules={[
         {
-          required: true,
+          required: required,
           message: `${label} is required!`,
         },
       ]}
-      hasFeedback
     >
-      <AntInput placeholder={placeholder} />
+      <AntInput type={type} placeholder={placeholder} maxLength={maxLength} size="large" />
     </Form.Item>
   );
 };
