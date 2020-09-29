@@ -10,8 +10,10 @@ function Home() {
         <span className="bordao__secundario">Alugue seu imóvel sem drama</span>
       </div>
 
-      <span>Cidade: </span>
-      <Input size="large" placeholder="procure por uma cidade" />
+      <div className="home__input">
+        <span>Cidade: </span>
+        <Input size="large" placeholder="procure por uma cidade" />
+      </div>
 
       <div className="home__search">
         <Button>Encontrar imóveis</Button>

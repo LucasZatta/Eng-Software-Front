@@ -1,4 +1,24 @@
+@use "./../../styles/_themes";
+@import "./../../styles/utils";
+
 .create-user-form {
+  padding: 30px 20px;
+
   &__inputs {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    padding-bottom: 30px;
+  }
+
+  &__text {
+    color: rgba(0, 0, 0, 0.54);
+  }
+
+  .ant-btn {
+    @include button-style(themes.$blue-02, themes.$blue-03, #ffffff);
+    border-radius: 8px;
+    width: 160px;
+    height: 40px;
   }
 }

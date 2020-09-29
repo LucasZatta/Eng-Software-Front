@@ -1,9 +1,10 @@
 import React from "react";
 import { Form, Input } from "antd";
+import "./form.style.scss";
 
 const InputPassword = () => {
   return (
-    <>
+    <div className="input-password">
       <Form.Item
         name="password"
         label="Senha"
@@ -39,7 +40,7 @@ const InputPassword = () => {
       >
         <Input.Password size="large" />
       </Form.Item>
-    </>
+    </div>
   );
 };
 
