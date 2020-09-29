@@ -3,11 +3,8 @@ import { composeWithDevTools } from "redux-devtools-extension";
 import { createBrowserHistory as createHistory } from "history";
 import { connectRouter, routerMiddleware } from "connected-react-router";
 import { createEpicMiddleware } from "redux-observable";
-<<<<<<< HEAD
 import thunk from "redux-thunk";
-=======
 import epics from "./epics";
->>>>>>> abd3cd25228cda28ccb2a9404eac4931a95ad608
 import Reducers from "./reducer";
 
 const history = createHistory();

@@ -1,6 +1,5 @@
-import { Button } from "antd";
+import { Button, Input } from "antd";
 import React from "react";
-import Input from "../../components/form/input";
 import "./home.style.scss";
 
 function Home() {
@@ -11,9 +10,12 @@ function Home() {
         <span className="bordao__secundario">Alugue seu imóvel sem drama</span>
       </div>
 
-      <Input label="Cidade" name="city" placeholder="Busque por cidade" />
+      <span>Cidade: </span>
+      <Input size="large" placeholder="procure por uma cidade" />
 
-      <Button>Encontrar imóveis</Button>
+      <div className="home__search">
+        <Button>Encontrar imóveis</Button>
+      </div>
     </div>
   );
 }

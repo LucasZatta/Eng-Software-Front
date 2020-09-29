@@ -1,13 +1,7 @@
 import { notification } from "antd";
 import { ofType } from "redux-observable";
 import { merge, of } from "rxjs";
-import {
-  catchError,
-  concatMap,
-  delay,
-  map,
-  withLatestFrom,
-} from "rxjs/operators";
+import { catchError, concatMap, delay, map, withLatestFrom } from "rxjs/operators";
 import { UserActions } from "./actions";
 import { User, user_type } from "./models";
 import { getUserMe, postUser } from "./service";
@@ -20,22 +14,22 @@ const aa = {
   password: "12234",
   type: [user_type.OWNER, user_type.RENTER],
 };
+
 export interface Action<T = undefined> {
   type: string;
   payload?: T;
 }
 
 const getUserMeByCpf = (cpf: string) => {
-  return getUserMe(cpf).then(
-    (response) => {
+  return getUserMe(cpf)
+    .then((response) => {
       console.log(response);
       return UserActions.getUserMeSuccess(aa);
-    },
-    catchError((error) => {
+    })
+    .catch((error) => {
       console.log(error);
       return of(UserActions.getUserMeFailure(error));
-    })
-  );
+    });
 };
 
 export const handleGetUserMe = (action$: any) =>
@@ -45,20 +39,21 @@ export const handleGetUserMe = (action$: any) =>
     concatMap((payload: string) => getUserMeByCpf(payload))
   );
 
-const registerUser = async (user: User) => {
-  try {
-    const response = await postUser(user);
-    console.log(response);
-    return UserActions.getUserMeSuccess(aa);
-  } catch (error) {
-    console.log(error);
-    return of(UserActions.getUserMeFailure(error));
-  }
+const onRegisterUser = (user: User) => {
+  return postUser(user)
+    .then((response) => {
+      console.log(response);
+      return UserActions.registerUserSuccess(user);
+    })
+    .catch((error) => {
+      console.log(error);
+      return UserActions.registerUserFailure(error);
+    });
 };
 
 export const handleRegisterUser = (action$: any) =>
   action$.pipe(
     ofType("REGISTER_USER"),
     map((action: Action<object>) => action.payload),
-    concatMap((newUser: User) => registerUser(newUser))
+    concatMap((newUser: User) => onRegisterUser(newUser))
   );
