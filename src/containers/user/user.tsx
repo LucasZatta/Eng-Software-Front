@@ -24,7 +24,9 @@ const User = () => {
 
   const loggedUser = useSelector<any, UserModel>((state) => state.UserState.currentUser);
 
-  useEffect(() => loggedUser && history.push("/"), [loggedUser]);
+  useEffect(() => {
+    loggedUser && history.push("/home");
+  }, [loggedUser]);
 
   const onFinish = (values: DataValues) => {
     const newUser: UserModel = {
