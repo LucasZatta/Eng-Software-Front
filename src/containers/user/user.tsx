@@ -1,11 +1,12 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Button, Form } from "antd";
 import Input from "./../../components/form/input";
 import InputPassword from "./../../components/form/inputPassword";
 import { User as UserModel, user_type } from "./../../redux/user/models";
-import "./user.style.scss";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { UserActions } from "./../../redux/user/actions";
+import { useHistory } from "react-router-dom";
+import "./user.style.scss";
 
 const { registerUser } = UserActions;
 
@@ -19,6 +20,11 @@ interface DataValues {
 
 const User = () => {
   const dispatch = useDispatch();
+  const history = useHistory();
+
+  const loggedUser = useSelector<any, UserModel>((state) => state.UserState.currentUser);
+
+  useEffect(() => loggedUser && history.push("/"), [loggedUser]);
 
   const onFinish = (values: DataValues) => {
     const newUser: UserModel = {
@@ -29,15 +35,17 @@ const User = () => {
       password: values.password,
       type: [user_type.OWNER, user_type.RENTER],
     };
-    console.log("Success:", newUser);
     dispatch(registerUser(newUser));
   };
 
   return (
-    <div>
-      <h1>Create User page</h1>
+    <div className="create-user-form">
+      <h1>Registrar Novo Usuario</h1>
+      <p className="create-user-form__text">
+        Estamos muito felizes que voce queira utilizar nosso app, mas antes precisamos de algumas informcoes!
+      </p>
 
-      <Form onFinish={onFinish} layout="vertical" className="create-user-form">
+      <Form onFinish={onFinish} layout="vertical">
         <div className="create-user-form__inputs">
           <Input label={"Nome"} />
           <Input label={"Cpf"} />

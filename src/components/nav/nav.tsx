@@ -3,8 +3,8 @@ import { useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { Button, Dropdown, Form, Input, Menu, Modal } from "antd";
 import { DownOutlined, UserOutlined, LockOutlined } from "@ant-design/icons";
-import "./nav.scss";
 import { User } from "../../redux/user/models";
+import "./nav.scss";
 
 interface NavProps {}
 
@@ -13,9 +13,7 @@ const Nav: FC<NavProps> = () => {
 
   const [loginModalVisible, setLoginModalVisible] = useState<boolean>(false);
 
-  const loggedUser = useSelector<any, User>(
-    (state) => state.UserState.currentUser
-  );
+  const loggedUser = useSelector<any, User>((state) => state.UserState.currentUser);
 
   const redirectToRegisterUser = () => {
     setLoginModalVisible(false);
@@ -75,11 +73,7 @@ const Nav: FC<NavProps> = () => {
         {loggedUser ? (
           <p>ola user!</p>
         ) : (
-          <Button
-            type="primary"
-            className="login-button"
-            onClick={() => setLoginModalVisible(true)}
-          >
+          <Button type="primary" className="login-button" onClick={() => setLoginModalVisible(true)}>
             Entrar
           </Button>
         )}
@@ -92,19 +86,10 @@ const Nav: FC<NavProps> = () => {
         destroyOnClose
       >
         <Form name="normal_login" className="login-form" onFinish={onFinish}>
-          <Form.Item
-            name="username"
-            rules={[{ required: true, message: "Please input your Username!" }]}
-          >
-            <Input
-              prefix={<UserOutlined className="site-form-item-icon" />}
-              placeholder="Username"
-            />
+          <Form.Item name="username" rules={[{ required: true, message: "Please input your Username!" }]}>
+            <Input prefix={<UserOutlined className="site-form-item-icon" />} placeholder="Username" />
           </Form.Item>
-          <Form.Item
-            name="password"
-            rules={[{ required: true, message: "Please input your Password!" }]}
-          >
+          <Form.Item name="password" rules={[{ required: true, message: "Please input your Password!" }]}>
             <Input.Password
               prefix={<LockOutlined className="site-form-item-icon" />}
               type="password"
@@ -112,11 +97,7 @@ const Nav: FC<NavProps> = () => {
             />
           </Form.Item>
           <div>
-            <Button
-              type="primary"
-              htmlType="submit"
-              className="login-form-button"
-            >
+            <Button type="primary" htmlType="submit" className="login-form-button">
               Log in
             </Button>
             Or <strong onClick={redirectToRegisterUser}>register now!</strong>
