@@ -15,7 +15,7 @@ const InputPassword = () => {
         ]}
         hasFeedback
       >
-        <Input.Password />
+        <Input.Password size="large" />
       </Form.Item>
       <Form.Item
         name="confirm"
@@ -32,14 +32,12 @@ const InputPassword = () => {
               if (!value || getFieldValue("password") === value) {
                 return Promise.resolve();
               }
-              return Promise.reject(
-                "The two passwords that you entered do not match!"
-              );
+              return Promise.reject("The two passwords that you entered do not match!");
             },
           }),
         ]}
       >
-        <Input.Password />
+        <Input.Password size="large" />
       </Form.Item>
     </>
   );

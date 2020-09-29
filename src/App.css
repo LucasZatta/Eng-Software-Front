@@ -1,6 +1,5 @@
 @import "~antd/dist/antd.css";
 
 .global-style {
-  padding: 8px 16px;
-  background-color: #fafafa;
+  background-color: #fdfdfd;
 }

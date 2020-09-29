@@ -4,6 +4,10 @@ import Input from "./../../components/form/input";
 import InputPassword from "./../../components/form/inputPassword";
 import { User as UserModel, user_type } from "./../../redux/user/models";
 import "./user.style.scss";
+import { useDispatch } from "react-redux";
+import { UserActions } from "./../../redux/user/actions";
+
+const { registerUser } = UserActions;
 
 interface DataValues {
   Nome: string;
@@ -14,6 +18,8 @@ interface DataValues {
 }
 
 const User = () => {
+  const dispatch = useDispatch();
+
   const onFinish = (values: DataValues) => {
     const newUser: UserModel = {
       name: values.Nome,
@@ -24,6 +30,7 @@ const User = () => {
       type: [user_type.OWNER, user_type.RENTER],
     };
     console.log("Success:", newUser);
+    dispatch(registerUser(newUser));
   };
 
   return (
