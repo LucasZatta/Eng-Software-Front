@@ -42,11 +42,11 @@ export const handleGetUserMe = (action$: any) =>
 const onRegisterUser = (user: User) => {
   return postUser(user)
     .then((response) => {
-      console.log(response);
+      console.log("resposta:  "+response);
       return UserActions.registerUserSuccess(user);
     })
     .catch((error) => {
-      console.log(error);
+      console.log("ERRO: "+error);
       return UserActions.registerUserFailure(error);
     });
 };
