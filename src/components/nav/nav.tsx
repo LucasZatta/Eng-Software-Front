@@ -71,7 +71,7 @@ const Nav: FC<NavProps> = () => {
       <div className="menu">
         <div className="menu__span">Ajuda</div>
         {loggedUser ? (
-          <p>ola user!</p>
+          <p>{loggedUser.name.charAt(0).toUpperCase()}</p>
         ) : (
           <Button type="primary" className="login-button" onClick={() => setLoginModalVisible(true)}>
             Entrar
