@@ -3,6 +3,7 @@ import { composeWithDevTools } from "redux-devtools-extension";
 import { createBrowserHistory as createHistory } from "history";
 import { connectRouter, routerMiddleware } from "connected-react-router";
 import { createEpicMiddleware } from "redux-observable";
+import epics from "./epics";
 import Reducers from "./reducer";
 
 const history = createHistory();
@@ -20,5 +21,7 @@ const store = createStore(
   createRootReducer(),
   composeWithDevTools(applyMiddleware(...middlewares))
 );
+
+epicMiddleware.run(epics);
 
 export default store;

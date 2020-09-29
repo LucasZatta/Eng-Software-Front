@@ -1,20 +1,36 @@
 import { User } from "./models";
 
 const actions = {
-  GET_USER_BY_CPF: "[User] Get User By Cpf",
-  GET_USER_BY_CPF_SUCCESS: "[User] Get User By Cpf Success",
-  GET_USER_BY_CPF_FAILURE: "[User] Get User By Cpf Failure",
+  GET_USER_ME: "[User] Get User Me",
+  GET_USER_ME_SUCCESS: "[User] Get User Me",
+  GET_USER_ME_FAILURE: "[User] Get User Me",
+  REGISTER_USER: "[User] Register User",
+  REGISTER_USER_SUCCESS: "[User] Register User Success",
+  REGISTER_USER_FAILURE: "[User] Register User Failure",
 
-  getUserByCpf: (userCpf: string) => ({
+  getUserMe: (userCpf: string) => ({
     type: "GET_USER_BY_CPF",
     payload: userCpf,
   }),
-  getUserByCpfSuccess: (user: User) => ({
+  getUserMeSuccess: (user: User) => ({
     type: "GET_USER_BY_CPF_SUCCESS",
     payload: user,
   }),
-  getUserByCpfFailure: (error: string) => ({
+  getUserMeFailure: (error: string) => ({
     type: "GET_USER_BY_CPF_FAILURE",
+    payload: error,
+  }),
+
+  registerUser: (user: User) => ({
+    type: "REGISTER_USER",
+    payload: user,
+  }),
+  registerUserSuccess: (user: User) => ({
+    type: "REGISTER_USER_SUCCESS",
+    payload: user,
+  }),
+  registerUserFailure: (error: string) => ({
+    type: "REGISTER_USER_FAILURE",
     payload: error,
   }),
 };

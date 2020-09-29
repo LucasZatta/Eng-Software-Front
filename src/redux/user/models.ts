@@ -14,4 +14,5 @@ export enum user_type {
 
 export interface UserInitialState {
   currentUser: User | null;
+  error: string | null;
 }
