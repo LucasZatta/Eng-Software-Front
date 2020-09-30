@@ -11,24 +11,6 @@ const UserState = (
   action: { type: any; payload: any }
 ): UserInitialState => {
   switch (action.type) {
-    case "GET_USER_ME":
-      return {
-        ...state,
-        error: null,
-      };
-
-    case "GET_USER_ME_SUCCESS":
-      return {
-        ...state,
-        currentUser: action.payload,
-      };
-
-    case "GET_USER_ME_FAILURE":
-      return {
-        ...state,
-        error: action.payload,
-      };
-
     case "REGISTER_USER":
       return {
         ...state,
@@ -41,6 +23,22 @@ const UserState = (
       };
 
     case "REGISTER_USER_FAILURE":
+      return {
+        ...state,
+        error: action.payload,
+      };
+    case "LOG_IN_USER":
+      return {
+        ...state,
+      };
+
+    case "LOG_IN_USER_SUCCESS":
+      return {
+        ...state,
+        currentUser: action.payload,
+      };
+
+    case "LOG_IN_USER_FAILURE":
       return {
         ...state,
         error: action.payload,

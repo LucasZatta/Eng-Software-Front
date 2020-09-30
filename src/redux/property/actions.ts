@@ -9,6 +9,12 @@ const actions = {
     "[Property] Fetch Properties Failure",
   SET_CITY_NAME:
     "[Property] Set City Name",
+  REGISTER_PROPERTY:
+    "[Property] Register Property",
+  REGISTER_PROPERTY_SUCCESS:
+    "[Property] Register Property Success",
+  REGISTER_PROPERTY_FAILURE:
+    "[Property] Register Property FAILURE",
 
   fetchProperties: () => ({
     type: "FETCH_PROPERTIES"
@@ -28,6 +34,23 @@ const actions = {
     type: "SET_CITY_NAME",  
     payload: cityName,
   }),
+
+  registerProperty: (property: Property) => ({
+    type:"REGISTER_PROPERTY",
+    payload: property,
+  }),
+  
+  registerPropertySuccess: (property: Property) => ({
+    type:"REGISTER_PROPERTY_SUCCESS",
+    payload: property,
+  }),
+
+  registerPropertyFailure: (error: string) => ({
+    type:"REGISTER_PROPERTY_FAILURE",
+    payload: error,
+  }),
+
+  
   
 };
 

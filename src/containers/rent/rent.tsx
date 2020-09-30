@@ -26,12 +26,18 @@ const Rent = () => {
     return properties.map((p) => <Card property={p} />);
   };
 
-  return (
-    <div className="rent">
-      <h1>Imóveis para alugar em {cityName ? cityName : "todo lugar! "}</h1>
-      <div className="property-cards">{renderPropertiesByCityName()}</div>
-    </div>
-  );
+  
+    useEffect(()=>{
+        if(properties.length === 0){
+            dispatch(fetchProperties());
+        }
+    },[])
+    return(
+        <div className="rent">
+        <h1>Imóveis para alugar em {cityName ? cityName : "todo lugar! "}</h1>
+        <div className="property-cards">{renderPropertiesByCityName()}</div>
+      </div>
+    )
 };
 
 export default Rent;

@@ -1,15 +1,19 @@
 import React, { FC, useState } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { Button, Dropdown, Form, Input, Menu, Modal } from "antd";
 import { DownOutlined, UserOutlined, LockOutlined } from "@ant-design/icons";
 import { User } from "../../redux/user/models";
+import { UserActions } from "./../../redux/user/actions";
 import "./nav.scss";
+
+const { logInUser } = UserActions;
 
 interface NavProps {}
 
 const Nav: FC<NavProps> = () => {
   const history = useHistory();
+  const dispatch = useDispatch();
 
   const [loginModalVisible, setLoginModalVisible] = useState<boolean>(false);
 
@@ -49,7 +53,15 @@ const Nav: FC<NavProps> = () => {
     </Menu>
   );
 
-  const onFinish = (values: any) => console.log("Success:", values);
+  const onFinish = (values: any) => {
+    console.log("Success:", values);
+    
+    const userInfo ={
+      username: values.username,
+      password: values.password,
+    }
+    dispatch(logInUser(userInfo));
+  }
 
   return (
     <nav>

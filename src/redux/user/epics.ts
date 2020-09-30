@@ -3,7 +3,7 @@ import { of } from "rxjs";
 import { concatMap, map } from "rxjs/operators";
 import { UserActions } from "./actions";
 import { User, user_type } from "./models";
-import { getUserMe, postUser } from "./service";
+import { logInUser, postUser } from "./service";
 
 const aa = {
   name: "camilla",
@@ -19,33 +19,12 @@ export interface Action<T = undefined> {
   payload?: T;
 }
 
-const getUserMeByCpf = (cpf: string) => {
-  return getUserMe(cpf)
-    .then((response) => {
-      console.log(response);
-      return UserActions.getUserMeSuccess(aa);
-    })
-    .catch((error) => {
-      console.log(error);
-      return of(UserActions.getUserMeFailure(error));
-    });
-};
-
-export const handleGetUserMe = (action$: any) =>
-  action$.pipe(
-    ofType("GET_USER_ME"),
-    map((action: Action<object>) => action.payload),
-    concatMap((payload: string) => getUserMeByCpf(payload))
-  );
-
 const onRegisterUser = (user: User) => {
   return postUser(user)
     .then((response) => {
-      console.log("resposta:  " + response);
-      return UserActions.registerUserSuccess((response as unknown) as User);
+      return UserActions.registerUserSuccess(user);
     })
     .catch((error) => {
-      console.log("ERRO: " + error);
       return UserActions.registerUserFailure(error);
     });
 };
@@ -53,5 +32,23 @@ const onRegisterUser = (user: User) => {
 export const handleRegisterUser = (action$: any) =>
   action$.pipe(
     ofType("REGISTER_USER"),
+    map((action: Action<object>) => action.payload),
     concatMap((newUser: User) => onRegisterUser(newUser))
+  );
+
+const onLogIn = (user: any) => {
+  return logInUser(user)
+    .then((response) => {
+      return UserActions.logInUserSuccess(response.data.data as unknown as User);
+    })
+    .catch((error) => {
+      return UserActions.logInUserFailure(error);
+    });
+};
+
+export const handleLogIn = (action$: any) => 
+  action$.pipe(
+    ofType("LOG_IN_USER"),
+    map((action: Action<object>) => action.payload),
+    concatMap((newInfo: any) => onLogIn(newInfo))
   );

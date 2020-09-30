@@ -1,17 +1,21 @@
 import { Button, Form, Radio } from "antd";
 import React, { useState } from "react";
-import { Address, Property as PropertyModel } from "./../../redux/property/models";
+import { Address, Property as PropertyModel} from "./../../redux/property/models";
 import Input from "../../components/form/input";
 import Switch from "../../components/form/switch";
 import Textarea from "../../components/form/textarea";
 import AddressForm from "./forms/addressForm";
 import ApartmentForm from "./forms/apartmentForm";
 import "./property.style.scss";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { User } from "../../redux/user/models";
+import { PropertyActions } from "./../../redux/property/actions";
+
+const { registerProperty} = PropertyActions;
 
 const Property = () => {
   const [propertyType, setPropertyType] = useState<string>("apartment");
+  const dispatch = useDispatch();
 
   const onRadioChange = (val: "apartment" | "house") => setPropertyType(val);
 
@@ -28,27 +32,29 @@ const Property = () => {
       street: values.street,
       number: values.number,
       complement: values.complement,
-      reference: values.reference,
-    };
+      reference: values.reference
+    }
 
-    // const newProperty: Property = {
-    //   ...propertyAddres,
-    //   ownerID: loggedUser.cpf,
+    const newProperty: PropertyModel = {
+      ...propertyAddres,
+      ownerID: loggedUser.cpf,
+      description: values.description,
+      rent_value: parseInt(values.rent_value),
+      rooms: parseInt(values.rooms),
+      garage_spots: parseInt(values.garage_spots),
+      living_rooms: parseInt(values.living_rooms),
+      suites: parseInt(values.suites),
+      area: parseInt(values.area),
+      cabinet: values.cabinet,
+      type: propertyType,
+      floor: parseInt(values.floor),
+      cond_value: parseInt(values.cond_value),
+      concierge24: values.concierge24,
+      address: propertyAddres,
+    }
+    dispatch(registerProperty(newProperty));
 
-    //   description: values.description,
-    //   rent_value: values.rent_value,
-    //   rooms: values,
-    //   garage_spots: values,
-    //   living_rooms: values,
-    //   suites: values,
-    //   area: values,
-    //   cabinet: values,
-
-    //   floor?: number;
-    //   cond_value?: number;
-    //   concierge24?: boolean;
-    // }
-  };
+  }
 
   return (
     <div className="property">

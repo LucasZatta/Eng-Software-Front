@@ -1,5 +1,7 @@
 import { combineEpics } from "redux-observable";
-import { handleGetUserMe, handleRegisterUser } from "./user/epics";
-import { handleFetchProperties } from "./property/epics";
+import { handleLogIn, handleRegisterUser } from "./user/epics";
 
-export default combineEpics(handleGetUserMe, handleRegisterUser, handleFetchProperties);
+export default combineEpics(handleLogIn, handleRegisterUser);
+
+
+

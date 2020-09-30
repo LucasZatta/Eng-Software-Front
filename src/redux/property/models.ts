@@ -1,7 +1,7 @@
 export interface Property {
   address: Address;
   ownerID: string;
-  type: property_type;
+  type: string;
 
   description: string;
   rent_value: number;
