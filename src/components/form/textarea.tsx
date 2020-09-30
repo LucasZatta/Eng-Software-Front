@@ -1,5 +1,6 @@
 import { Form, Input as AntInput } from "antd";
 import React, { FC } from "react";
+import "./form.style.scss";
 
 export interface TextareaProps {
   label: string;
@@ -12,6 +13,7 @@ const Textarea: FC<TextareaProps> = ({ label, name, required = true }) => {
     <Form.Item
       name={name ? name : label}
       label={label}
+      className="input-textarea"
       rules={[
         {
           required: required,

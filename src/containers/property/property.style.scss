@@ -1,7 +1,56 @@
-.property-form {
-  &__address {
+@use "./../../styles/_themes";
+@import "./../../styles/utils";
+
+.basic-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.property {
+  padding: 30px 20px;
+  &__form {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+
+    &--left {
+      .address-form {
+        .input-Cep {
+          width: 50%;
+        }
+        .number-complement {
+          @extend .basic-grid;
+        }
+      }
+    }
+    &--right {
+      .ant-radio-group {
+        padding-top: 24px;
+        padding-bottom: 48px;
+      }
+      .floor-cond {
+        @extend .basic-grid;
+      }
+      .room-suites {
+        @extend .basic-grid;
+      }
+      .switch {
+        display: grid;
+        grid-template-columns: 140px 140px;
+        gap: 12px;
+      }
+    }
   }
 
-  &__type {
+  .register-button {
+    float: right;
+    padding-bottom: 60px;
+    .ant-btn {
+      @include button-style(themes.$blue-02, themes.$blue-03, #ffffff);
+      border-radius: 8px;
+      width: 160px;
+      height: 40px;
+    }
   }
 }

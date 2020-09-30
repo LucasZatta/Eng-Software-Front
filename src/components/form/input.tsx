@@ -15,6 +15,7 @@ const Input: FC<InputProps> = ({ label, placeholder = "", type = "text", maxLeng
     <Form.Item
       name={name ? name : label}
       label={label}
+      className={`input-${label}`}
       rules={[
         {
           required: required,

@@ -1,11 +1,10 @@
 export interface Property {
-  id: string;
   address: Address;
   ownerID: string;
+  type: property_type;
 
   description: string;
   rent_value: number;
-  type: property_type;
   rooms: number;
   garage_spots: number;
   living_rooms: number;
@@ -30,7 +29,7 @@ export interface Address {
 
 export interface PropertyInitialState {
   properties: Property[];
-  cityName: string | null,
+  cityName: string | null;
   error: string | null;
 }
 

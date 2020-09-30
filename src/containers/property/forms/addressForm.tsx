@@ -10,8 +10,8 @@ const estado = [
 ];
 
 const bairro = [
-  { value: "SantaInes", label: "Santa Ines" },
-  { value: "NovaGranada", label: "Nova Granada" },
+  { value: "Santa Ines", label: "Santa Ines" },
+  { value: "Nova Granada", label: "Nova Granada" },
   { value: "Centro", label: "Centro" },
   { value: "other", label: "Outro" },
 ];
@@ -25,16 +25,22 @@ const AddressForm = () => {
   const onNeighborhoodChange = (val: string) => setShowInputNeighborhood(val === "other");
 
   return (
-    <div className={"property-form__address"}>
-      <Input label={"Rua/Avenida"} placeholder={"Rua Pitangui"} />
-      <Input label={"Numero"} type="number" />
-      <Input label={"Complemento"} />
-      <Select options={bairro} label={"Bairro"} name={"neighborhood-select"} onChange={onNeighborhoodChange} />
-      {showInputNeighborhood && <Input label={""} name={"neighborhood-input"} />}
-      <Input label={"Cep"} placeholder={"XXXXX-XXX"} />
-      <Input label={"Cidade"} />
+    <div className={"address-form"}>
+      <Input label={"Cep"} placeholder={"XXXXX-XXX"} name="cep" />
+
+      <Input label={"Rua/Avenida"} name="street" placeholder={"Rua Pitangui"} />
+      <div className="number-complement">
+        <Input label={"Numero"} type="number" name="number" />
+        <Input label={"Complemento"} name="complement" />
+      </div>
+
+      <Select options={bairro} label={"Bairro"} name={"neighborhood_select"} onChange={onNeighborhoodChange} />
+      {showInputNeighborhood && <Input label={""} name={"neighborhood_input"} placeholder="informe o nome do bairro" />}
+
+      <Input label={"Cidade"} name="city" />
       <Select options={estado} label={"Estado"} name={"state"} />
-      <Textarea label={"Referencia"} required={false} />
+
+      <Textarea label={"Referencia"} required={false} name="reference" />
     </div>
   );
 };
