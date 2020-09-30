@@ -12,7 +12,7 @@ const Rent = () => {
 
   const properties = useSelector<any, Property[]>((state) => state.PropertyState.properties);
   const cityName = useSelector<any, string>((state) => state.PropertyState.cityName);
-
+  console.log(properties);
   useEffect(() => {
     if (properties.length === 0) {
       dispatch(fetchProperties());
@@ -27,11 +27,6 @@ const Rent = () => {
   };
 
   
-    useEffect(()=>{
-        if(properties.length === 0){
-            dispatch(fetchProperties());
-        }
-    },[])
     return(
         <div className="rent">
         <h1>Imóveis para alugar em {cityName ? cityName : "todo lugar! "}</h1>

@@ -12,8 +12,7 @@ export interface Action<T = undefined> {
 const onFetchProperties = () => {
   return fetchProperties()
     .then((response) => {
-      console.log(response);
-      return PropertyActions.fetchPropertiesSuccess((response as unknown) as Property[]);
+      return PropertyActions.fetchPropertiesSuccess((response.data.data as unknown) as Property[]);
     })
     .catch((error) => {
       console.log(error);
@@ -31,7 +30,7 @@ export const handleFetchProperties = (action$: any) =>
 const onRegisterProperty = (property: Property) => {
   return postProperty(property)
     .then((response) => {
-      return PropertyActions.registerPropertySuccess((response as unknown) as Property);
+      return PropertyActions.registerPropertySuccess((response.data.data as unknown) as Property);
     })
     .catch((error) => {
       return PropertyActions.registerPropertyFailure((error as unknown) as string);

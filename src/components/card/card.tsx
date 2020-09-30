@@ -6,11 +6,12 @@ export interface CardProps {
 }
 
 const Card: FC<CardProps> = ({ property }) => {
+  console.log(property);
   return (
     <div className="site-card-border-less-wrapper">
       <AntCard title={"title"} bordered={false} style={{ width: 300 }}>
         <p>{property.address.city + "," + property.address.neighborhood}</p>
-        <p>{property.rent_value}</p>
+        <p>{"R$ "+property.rent_value}</p>
         <p>{property.type}</p>
       </AntCard>
     </div>

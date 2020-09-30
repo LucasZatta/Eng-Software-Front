@@ -8,5 +8,5 @@ export const fetchProperties = () => {
 };
 
 export const postProperty = (property: Property) => {
-  return axios.post<Property>(`${apiURL}/register`, property);
+  return axios.post<any>(`${apiURL}/register`, property);
 };

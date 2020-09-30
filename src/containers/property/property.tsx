@@ -27,16 +27,17 @@ const Property = () => {
   const properties = useSelector<any, PropertyModel[]>((state) => state.PropertyState.properties);
 
   useEffect(() => {
-    if (savedPropertyID && properties.length > 0) {
+    if (savedPropertyID ) {
       const saved = properties.find((p) => p.id === savedPropertyID);
+      setSavedPropertyID(null);
       if (saved) history.push("/home");
     }
   }, [properties]);
-
+  console.log(properties);
   useEffect(() => {
     if (!loggedUser) history.push("/home");
   }, []);
-
+  
   const onFinish = (values: any) => {
     const propertyAddres: Address = {
       cep: values.cep,

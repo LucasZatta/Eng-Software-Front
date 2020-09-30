@@ -50,10 +50,7 @@ const Nav: FC<NavProps> = () => {
         key="2"
         disabled={!Boolean(loggedUser)}
         onClick={() =>
-          history.push({
-            pathname: "/properties",
-            search: `?user=${loggedUser ? loggedUser.cpf : ""}`,
-          })
+          history.push("/my-properties")
         }
       >
         Meus imóveis
