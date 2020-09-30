@@ -5,7 +5,7 @@ export interface Property {
 
   description: string;
   rent_value: number;
-  //
+  type: property_type;
   rooms: number;
   garage_spots: number;
   living_rooms: number;
@@ -29,7 +29,8 @@ export interface Address {
 }
 
 export interface PropertyInitialState {
-  propertiesByUser: Property[];
+  properties: Property[];
+  cityName: string | null,
   error: string | null;
 }
 

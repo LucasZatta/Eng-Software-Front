@@ -1,7 +1,7 @@
-import { notification } from "antd";
+
 import { ofType } from "redux-observable";
-import { merge, of } from "rxjs";
-import { catchError, concatMap, delay, map, withLatestFrom } from "rxjs/operators";
+import { of } from "rxjs";
+import { concatMap, map } from "rxjs/operators";
 import { UserActions } from "./actions";
 import { User, user_type } from "./models";
 import { getUserMe, postUser } from "./service";

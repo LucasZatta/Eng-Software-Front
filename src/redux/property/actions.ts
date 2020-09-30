@@ -1,26 +1,34 @@
 import { Property } from "./models";
 
 const actions = {
-  GET_USER_PROPERTIES: "[Property] Get Properties by Logged User",
-  GET_USER_PROPERTIES_SUCCESS:
-    "[Property] Get Properties by Logged User Success",
-  GET_USER_PROPERTIES_FAILURE:
-    "[Property] Get Properties by Logged User Failure",
+  FETCH_PROPERTIES:
+    "[Property] Fetch Properties",
+  FETCH_PROPERTIES_SUCCESS:
+    "[Property] Fetch Properties Success",
+  FETCH_PROPERTIES_FAILURE:
+    "[Property] Fetch Properties Failure",
+  SET_CITY_NAME:
+    "[Property] Set City Name",
 
-  getLoggedUserProperties: (userCPF: string) => ({
-    type: "GET_USER_PROPERTIES",
-    payload: userCPF,
+  fetchProperties: () => ({
+    type: "FETCH_PROPERTIES"
   }),
 
-  getLoggedUserPropertiesSuccess: (properties: Property[]) => ({
-    type: "GET_USER_PROPERTIES_SUCCESS",
+  fetchPropertiesSuccess: (properties: Property[]) => ({
+    type: "FETCH_PROPERTIES_SUCCESS",
     payload: properties,
   }),
 
-  getLoggedUserPropertiesFailure: (error: string) => ({
-    type: "GET_USER_PROPERTIES_FAILURE",
+  fetchPropertiesFailure: (error: string) => ({
+    type: "FETCH_PROPERTIES_FAILURE",
     payload: error,
   }),
+
+  setCityName: (cityName: string) => ({
+    type: "SET_CITY_NAME",  
+    payload: cityName,
+  }),
+  
 };
 
 export default actions;

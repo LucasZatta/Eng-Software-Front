@@ -14,6 +14,7 @@ const UserState = (
     case "GET_USER_ME":
       return {
         ...state,
+        error: null,
       };
 
     case "GET_USER_ME_SUCCESS":

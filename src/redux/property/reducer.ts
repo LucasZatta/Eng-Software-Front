@@ -1,7 +1,8 @@
 import { PropertyInitialState } from "./models";
 
 const initialState: PropertyInitialState = {
-  propertiesByUser: [],
+  properties: [],
+  cityName: null,
   error: null,
 };
 
@@ -10,23 +11,26 @@ const PropertyState = (
   action: { type: any; payload: any }
 ): PropertyInitialState => {
   switch (action.type) {
-    case "GET_USER_PROPERTIES":
-      return {
+    case "FETCH_PROPERTIES":
+      return{
         ...state,
-      };
-
-    case "GET_USER_PROPERTIES_SUCCESS":
-      return {
-        ...state,
-        propertiesByUser: action.payload,
         error: null,
       };
-
-    case "GET_USER_PROPERTIES_FAILURE":
-      return {
+    case "FETCH_PROPERTIES_SUCCESS":
+      return{
         ...state,
-        error: action.payload,
+        properties: action.payload
       };
+    case "FETCH_PROPERTIES_FAILURE":
+      return{
+        ...state,
+        error: action.payload
+      };
+    case "SET_CITY_NAME":
+      return{
+        ...state,
+        cityName: action.payload
+      }
 
     default:
       return state;
