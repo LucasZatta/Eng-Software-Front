@@ -1,30 +1,39 @@
 import { Button, Form, Radio } from "antd";
 import React, { useEffect, useState } from "react";
-import { Address, Property as PropertyModel} from "./../../redux/property/models";
+import { Address, Property as PropertyModel } from "./../../redux/property/models";
 import Input from "../../components/form/input";
 import Switch from "../../components/form/switch";
 import Textarea from "../../components/form/textarea";
 import AddressForm from "./forms/addressForm";
 import ApartmentForm from "./forms/apartmentForm";
-import "./property.style.scss";
 import { useDispatch, useSelector } from "react-redux";
 import { User } from "../../redux/user/models";
 import { PropertyActions } from "./../../redux/property/actions";
+import { useHistory } from "react-router-dom";
+import "./property.style.scss";
 
-const { registerProperty} = PropertyActions;
+const { registerProperty } = PropertyActions;
 
 const Property = () => {
-  const [propertyType, setPropertyType] = useState<string>("apartment");
   const dispatch = useDispatch();
+  const history = useHistory();
+
+  const [propertyType, setPropertyType] = useState<string>("apartment");
+  const [savedPropertyID, setSavedPropertyID] = useState<string | null>(null);
 
   const onRadioChange = (val: "apartment" | "house") => setPropertyType(val);
 
   const loggedUser = useSelector<any, User>((state) => state.UserState.currentUser);
+  const properties = useSelector<any, PropertyModel[]>((state) => state.PropertyState.properties);
 
+  useEffect(() => {
+    if (savedPropertyID && properties.length > 0) {
+      const saved = properties.find((p) => p.id === savedPropertyID);
+      if (saved) history.push("/home");
+    }
+  }, [properties]);
 
   const onFinish = (values: any) => {
-    console.log("Success:", values);
-
     const propertyAddres: Address = {
       cep: values.cep,
       neighborhood: values.neighborhood_select === "other" ? values.neighborhood_input : values.neighborhood_select,
@@ -33,8 +42,8 @@ const Property = () => {
       street: values.street,
       number: values.number,
       complement: values.complement,
-      reference: values.reference
-    }
+      reference: values.reference,
+    };
     const idString = loggedUser.cpf + values.cep + values.number + values.complement;
     const newProperty: PropertyModel = {
       id: idString,
@@ -52,10 +61,10 @@ const Property = () => {
       cond_value: parseInt(values.cond_value),
       concierge24: values.concierge24,
       address: propertyAddres,
-    }
+    };
+    setSavedPropertyID(idString);
     dispatch(registerProperty(newProperty));
-
-  }
+  };
 
   return (
     <div className="property">
