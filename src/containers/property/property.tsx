@@ -1,6 +1,6 @@
 import { Button, Form, Radio } from "antd";
 import React, { useState } from "react";
-import { Address, Property } from "./../../redux/property/models";
+import { Address, Property as PropertyModel } from "./../../redux/property/models";
 import Input from "../../components/form/input";
 import Switch from "../../components/form/switch";
 import Textarea from "../../components/form/textarea";
@@ -28,27 +28,27 @@ const Property = () => {
       street: values.street,
       number: values.number,
       complement: values.complement,
-      reference: values.reference
-    }
+      reference: values.reference,
+    };
 
-    const newProperty: Property = {
-      ...propertyAddres,
-      ownerID: loggedUser.cpf,
+    // const newProperty: Property = {
+    //   ...propertyAddres,
+    //   ownerID: loggedUser.cpf,
 
-      description: values.description,
-      rent_value: values.rent_value,
-      rooms: values,
-      garage_spots: values,
-      living_rooms: values,
-      suites: values,
-      area: values,
-      cabinet: values,
+    //   description: values.description,
+    //   rent_value: values.rent_value,
+    //   rooms: values,
+    //   garage_spots: values,
+    //   living_rooms: values,
+    //   suites: values,
+    //   area: values,
+    //   cabinet: values,
 
-      floor?: number;
-      cond_value?: number;
-      concierge24?: boolean;
-    }
-  }
+    //   floor?: number;
+    //   cond_value?: number;
+    //   concierge24?: boolean;
+    // }
+  };
 
   return (
     <div className="property">
@@ -70,11 +70,11 @@ const Property = () => {
             <div className={"info-form"}>
               <Input type="number" name="rent_value" label="Valor do aluguel" />
 
-              <div className="room-suites"> 
+              <div className="room-suites">
                 <Input type="number" name="rooms" label="Quartos" />
                 <Input type="number" name="suites" label="Suites" />
               </div>
-              
+
               <Input type="number" name="garage_spots" label="Vagas de garagem" />
               <Input type="number" name="living_rooms" label="Sala de Estar/Jantar" />
               <Input type="number" name="area" label="Area (em m2)" />

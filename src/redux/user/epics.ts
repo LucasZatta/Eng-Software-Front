@@ -1,4 +1,3 @@
-
 import { ofType } from "redux-observable";
 import { of } from "rxjs";
 import { concatMap, map } from "rxjs/operators";
@@ -43,7 +42,7 @@ const onRegisterUser = (user: User) => {
   return postUser(user)
     .then((response) => {
       console.log("resposta:  " + response);
-      return UserActions.registerUserSuccess(user);
+      return UserActions.registerUserSuccess((response as unknown) as User);
     })
     .catch((error) => {
       console.log("ERRO: " + error);
@@ -54,6 +53,5 @@ const onRegisterUser = (user: User) => {
 export const handleRegisterUser = (action$: any) =>
   action$.pipe(
     ofType("REGISTER_USER"),
-    map((action: Action<object>) => action.payload),
     concatMap((newUser: User) => onRegisterUser(newUser))
   );

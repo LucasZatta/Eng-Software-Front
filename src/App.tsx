@@ -19,7 +19,7 @@ function App() {
           <Switch>
             <Route path="/" exact component={Home} />
             <Route path="/home" exact component={Home} />
-            <Route path="/rent" component={Rent} />
+            <Route path="/to-rent" component={Rent} />
             <Route path="/about-us" component={About} />
             <Route path="/user" component={User} />
             <Route path="/new-property" exact={false} component={Property} />

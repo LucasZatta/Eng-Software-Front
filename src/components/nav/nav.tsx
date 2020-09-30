@@ -24,6 +24,7 @@ const Nav: FC<NavProps> = () => {
     <Menu onClick={() => {}}>
       <Menu.Item
         key="1"
+        disabled={!Boolean(loggedUser)}
         onClick={() =>
           history.push({
             pathname: "/new-property",
@@ -35,6 +36,7 @@ const Nav: FC<NavProps> = () => {
       </Menu.Item>
       <Menu.Item
         key="2"
+        disabled={!Boolean(loggedUser)}
         onClick={() =>
           history.push({
             pathname: "/properties",
