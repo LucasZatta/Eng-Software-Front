@@ -1,8 +1,8 @@
 export interface Property {
+  id: string,
   address: Address;
   ownerID: string;
   type: string;
-
   description: string;
   rent_value: number;
   rooms: number;

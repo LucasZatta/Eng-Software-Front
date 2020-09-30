@@ -2,7 +2,7 @@ import { ofType } from "redux-observable";
 import { concatMap, map } from "rxjs/operators";
 import { PropertyActions } from "./actions";
 import { Property } from "./models";
-import { getPropertyByCity } from "./service";
+import { getPropertyByCity, postProperty } from "./service";
 
 export interface Action<T = undefined> {
   type: string;
@@ -12,11 +12,11 @@ export interface Action<T = undefined> {
 const onFetchProperties = () => {
   return getPropertyByCity()
     .then((response) => {
-      console.log("resposta:  " + response);
+      console.log(response);
       return PropertyActions.fetchPropertiesSuccess((response as unknown) as Property[]);
     })
-    .catch((error) => {
-      console.log("ERRO: " + error);
+    .catch((error) => {  
+      console.log(error)    
       return PropertyActions.fetchPropertiesFailure((error as unknown) as string);
     });
 };
@@ -26,4 +26,21 @@ export const handleFetchProperties = (action$: any) =>
     ofType("FETCH_PROPERTIES"),
     map((action: Action<object>) => action.payload),
     concatMap(() => onFetchProperties())
+  );
+
+const onRegisterProperty = (property: Property) => {
+  return postProperty(property)
+  .then((response) => {
+    return PropertyActions.registerPropertySuccess((response as unknown) as Property);
+  })
+  .catch((error) => {
+    return PropertyActions.registerPropertyFailure((error as unknown) as string);
+  });
+};
+
+export const handleRegisterProperty = (action$: any) => 
+  action$.pipe(
+    ofType("REGISTER_PROPERTY"),
+    map((action: Action<object>) => action.payload),
+    concatMap((newProperty: Property) => onRegisterProperty(newProperty))
   );

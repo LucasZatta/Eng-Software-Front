@@ -5,15 +5,6 @@ import { UserActions } from "./actions";
 import { User, user_type } from "./models";
 import { logInUser, postUser } from "./service";
 
-const aa = {
-  name: "camilla",
-  cpf: "08015456681",
-  phone: "319999999",
-  email: "camilla@g.com",
-  password: "12234",
-  type: [user_type.OWNER, user_type.RENTER],
-};
-
 export interface Action<T = undefined> {
   type: string;
   payload?: T;

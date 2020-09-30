@@ -1,4 +1,4 @@
-import React, { FC, useState } from "react";
+import React, { FC, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { Button, Dropdown, Form, Input, Menu, Modal } from "antd";
@@ -18,6 +18,14 @@ const Nav: FC<NavProps> = () => {
   const [loginModalVisible, setLoginModalVisible] = useState<boolean>(false);
 
   const loggedUser = useSelector<any, User>((state) => state.UserState.currentUser);
+
+  useEffect(()=>{
+     if(loggedUser){
+       setLoginModalVisible(false);
+       history.push("/home");
+       
+     }
+  },[loggedUser])
 
   const redirectToRegisterUser = () => {
     setLoginModalVisible(false);

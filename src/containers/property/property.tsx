@@ -1,5 +1,5 @@
 import { Button, Form, Radio } from "antd";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Address, Property as PropertyModel} from "./../../redux/property/models";
 import Input from "../../components/form/input";
 import Switch from "../../components/form/switch";
@@ -21,6 +21,7 @@ const Property = () => {
 
   const loggedUser = useSelector<any, User>((state) => state.UserState.currentUser);
 
+
   const onFinish = (values: any) => {
     console.log("Success:", values);
 
@@ -34,9 +35,9 @@ const Property = () => {
       complement: values.complement,
       reference: values.reference
     }
-
+    const idString = loggedUser.cpf + values.cep + values.number + values.complement;
     const newProperty: PropertyModel = {
-      ...propertyAddres,
+      id: idString,
       ownerID: loggedUser.cpf,
       description: values.description,
       rent_value: parseInt(values.rent_value),

@@ -7,6 +7,6 @@ export const getPropertyByCity = () => {
   return axios.get<Property[]>(`${apiURL}/getByCity`);
 };
 
-export const postProperty = () => {
-    return axios.get<Property>(`${apiURL}/register`);
+export const postProperty = (property: Property) => {
+    return axios.post<Property>(`${apiURL}/register`, property);
 };

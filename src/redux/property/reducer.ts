@@ -1,3 +1,4 @@
+import { handleFetchProperties } from "./epics";
 import { PropertyInitialState } from "./models";
 
 const initialState: PropertyInitialState = {
@@ -30,8 +31,22 @@ const PropertyState = (
       return{
         ...state,
         cityName: action.payload
-      }
-
+      };
+    case "REGISTER_PROPERTY":
+      return{
+        ...state,
+        error: null,
+      };
+    case "REGISTER_PROPERTY_SUCCESS":
+      return{
+        ...state,
+        properties: [...state.properties,action.payload]
+      };
+    case "REGISTER_PROPERTY_FAILURE":
+      return{
+        ...state,
+        error: action.payload,
+      };
     default:
       return state;
   }
