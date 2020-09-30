@@ -33,6 +33,10 @@ const Property = () => {
     }
   }, [properties]);
 
+  useEffect(() => {
+    if (!loggedUser) history.push("/home");
+  }, []);
+
   const onFinish = (values: any) => {
     const propertyAddres: Address = {
       cep: values.cep,
